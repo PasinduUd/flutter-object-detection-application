@@ -61,7 +61,10 @@ class _HomePageState extends State<HomePage> {
 
       result = "";
       recognitions?.forEach((response) {
-        result += response['label'] + " " + (response["confidence"] as double).toStringAsFixed(2) + "\n\n";
+        result += response['label'] +
+            " " +
+            (response["confidence"] as double).toStringAsFixed(2) +
+            "\n\n";
       });
 
       setState(() => result);
@@ -92,20 +95,13 @@ class _HomePageState extends State<HomePage> {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/camera_background.jpg'),
+                fit: BoxFit.cover,
               ),
             ),
             child: Column(
               children: [
                 Stack(
                   children: [
-                    Center(
-                      child: Container(
-                        color: Colors.black,
-                        height: 320,
-                        width: 360,
-                        child: Image.asset('assets/camera.jpg'),
-                      ),
-                    ),
                     Center(
                       child: TextButton(
                         // FlatButton widget has been replaced by TextButton
@@ -117,11 +113,11 @@ class _HomePageState extends State<HomePage> {
                           height: 270,
                           width: 360,
                           child: cameraImage == null
-                              ? Container(
+                              ? const SizedBox(
                                   height: 270,
                                   width: 360,
-                                  child: const Icon(
-                                    Icons.photo_camera_front,
+                                  child: Icon(
+                                    Icons.camera,
                                     color: Colors.blueAccent,
                                     size: 40,
                                   ),
@@ -143,7 +139,6 @@ class _HomePageState extends State<HomePage> {
                       child: Text(
                         result,
                         style: const TextStyle(
-                          backgroundColor: Colors.black87,
                           fontSize: 30.0,
                           color: Colors.white,
                         ),
